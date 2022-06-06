@@ -1,0 +1,114 @@
+# Welcome to GraphiQL
+#
+# GraphiQL is an in-browser tool for writing, validating, and
+# testing GraphQL queries.
+#
+# Type queries into this side of the screen, and you will see intelligent
+# typeaheads aware of the current GraphQL type schema and live syntax and
+# validation errors highlighted within the text.
+#
+# GraphQL queries typically start with a "{" character. Lines that start
+# with a # are ignored.
+#
+# An example GraphQL query might look like:
+#
+#     {
+#       field(arg: "value") {
+#         subField
+#       }
+#     }
+#
+# Keyboard shortcuts:
+#
+#  Prettify Query:  Shift-Ctrl-P (or press the prettify button above)
+#
+#     Merge Query:  Shift-Ctrl-M (or press the merge button above)
+#
+#       Run Query:  Ctrl-Enter (or press the play button above)
+#
+#   Auto Complete:  Ctrl-Space (or just start typing)
+#
+
+query Users {
+  users {
+    id
+    name
+  }
+}
+
+query Songs {
+  songs {
+    id
+    name
+    dor
+    artists {
+      id
+      name
+      dob
+      bio
+      avgRating
+      ratingCount
+    }
+    avgRating
+    ratingCount
+  }
+}
+
+query Artists {
+  artists {
+    id
+    name
+    dob
+    bio
+    avgRating
+    ratingCount
+  }
+}
+
+mutation creatingArtist {
+  createArtist(
+    input: {
+      name: "Arijit",
+      dob: "1980-01-01",
+      bio: "Good singer"
+    }
+  ) {
+    artist {
+      id
+      name
+    }
+  }
+}
+
+mutation creatingSong {
+  createSong(
+    input: {
+      name: "Duao mein yaad rakhna",
+      dor: "2020-01-01",
+      artists: [1]
+    }
+  ) {
+    song {
+      id
+      name
+      artists {
+        id
+        name
+      }
+    }
+  }
+}
+
+mutation rateSong {
+  rateSong(
+    input: {
+      userId: 2,
+      songId: 7,
+      rating: 5
+    }
+  ) {
+    rating {
+      rating
+    }
+  }
+}
